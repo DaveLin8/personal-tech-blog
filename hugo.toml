@@ -1,0 +1,23 @@
+theme = 'PaperMod'
+baseURL = 'https://www.doubletrees.com/'
+languageCode = 'en-us'
+title = "Dave Lin's Tech Blog"
+
+[params]
+  author = 'Dave Lin'
+  description = 'My journey building self-hosted AI, home servers, automation, and open-source projects.'
+
+
+[params.homeInfoParams]
+  Title = "Welcome to Dave's Tech Blog"
+  Content = "Exploring self-hosted AI, Linux, Docker, automation, and everything I learn along the way."
+
+[[menu.main]]
+  name = 'Posts'
+  url = '/posts/'
+  weight = 10
+
+[[menu.main]]
+  name = 'About'
+  url = '/about/'
+  weight = 20
