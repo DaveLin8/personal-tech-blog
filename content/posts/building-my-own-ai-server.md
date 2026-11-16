@@ -8,6 +8,23 @@ tags = ["Ubuntu", "Qwen", "Ollama", "ComfyUI", "WireGuard", "AWS", "Self-Hosting
 
 I started with a simple goal: get Qwen running on my own machine so I could try a local language model. By the end of the project, the same Ubuntu server was running a browser-based chat interface and a separate video-generation app. An AWS EC2 instance gave both services a public HTTPS address, while the model workloads stayed at home.
 
+## The Ubuntu server
+
+I run the AI workloads on `dave-bigdell`, my Dell XPS 8950 home server. It runs Ollama for Qwen, Open WebUI for chat, and ComfyUI for Wan 2.2 video experiments. The AWS instance handles public HTTPS through Caddy. Model inference runs on the Dell.
+
+![Front view of a Dell XPS 8950 desktop tower](/images/posts/dell-xps-8950.png)
+
+*Dell XPS 8950. [Stock product photo by Dell](https://www.dell.com/support/product-details/en-us/product/xps-8950-desktop/overview).*
+
+| Component | Setup |
+| --- | --- |
+| System | Dell XPS 8950 |
+| CPU | 12th Gen Intel Core i7-12700 |
+| Operating system | Ubuntu 26.04 |
+| GPU | NVIDIA GeForce RTX 3060 Ti with 8 GiB of VRAM |
+| System memory | About 30 GiB visible to Ubuntu |
+| Storage | 468 GiB NVMe system partition, plus a separate 1 TB drive reserved for storage and backups |
+
 ![A browser reaches Caddy over HTTPS. Caddy routes chat and video requests over WireGuard to Open WebUI and ComfyUI on the Ubuntu server. Open WebUI sends chat requests to Ollama, which runs Qwen.](/images/posts/ai-server-architecture.svg)
 
 ## Qwen, Ollama, and Open WebUI
