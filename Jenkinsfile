@@ -24,5 +24,16 @@ pipeline {
                 '''
             }
         }
+
+        stage('Build Hugo Site') {
+            steps {
+                sh '''
+                    echo "Building Hugo website..."
+                    hugo --minify
+                    test -f public/index.html
+                    echo "Hugo website built successfully."
+                '''
+            }
+        }
     }
 }
