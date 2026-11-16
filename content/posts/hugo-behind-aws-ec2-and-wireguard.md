@@ -8,6 +8,8 @@ tags = ["Hugo", "Jenkins", "Nginx", "Caddy", "WireGuard", "AWS", "Self-Hosting"]
 
 When I set up this blog, I already had Caddy running on an AWS EC2 instance and a WireGuard tunnel back to my Ubuntu server. I used that same connection for the blog. The home server builds and serves the pages, and EC2 handles public HTTPS.
 
+![Jenkins builds the Hugo site from GitHub and syncs the generated HTML to the home server. Browser requests pass through Caddy on EC2 and over WireGuard to Nginx, which reads the generated files.](/images/posts/hugo-blog-architecture.svg)
+
 ## From Markdown to the live site
 
 The Hugo source lives in a GitHub repository. Posts are Markdown files under `content/posts/`, and PaperMod is checked out as a Git submodule. Jenkins checks out the repository and its submodules, runs `hugo --minify`, checks that the build produced `public/index.html`, and syncs the generated files into the directory Nginx serves.
@@ -39,5 +41,7 @@ The local TLS handshake failed too. That narrowed the investigation to the HTTPS
 ## Switching the second domain
 
 Once I could open the Hugo homepage on `www.davelin.io` over HTTPS, I moved [www.doubletrees.com](https://www.doubletrees.com/) from its old Open WebUI upstream to the Hugo upstream. I backed up the Caddyfile, reviewed the upstream change, validated the config, and reloaded Caddy. Afterward I confirmed that both blog domains worked and checked the dedicated hostnames for Open WebUI and ComfyUI.
+
+![Add and test www.davelin.io, verify its Hugo homepage, then back up and validate Caddy before switching www.doubletrees.com. Check both blog domains and the AI app routes after the switch.](/images/posts/hugo-domain-rollout.svg)
 
 Having a second hostname gave me a way to verify the new end-to-end path before switching the existing one. For the next post, the route is already in place. I only need to update the Markdown and deploy the Hugo build.

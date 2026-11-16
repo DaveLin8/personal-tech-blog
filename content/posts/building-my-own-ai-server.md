@@ -8,6 +8,8 @@ tags = ["Ubuntu", "Qwen", "Ollama", "ComfyUI", "WireGuard", "AWS", "Self-Hosting
 
 I started with a simple goal: get Qwen running on my own machine so I could try a local language model. By the end of the project, the same Ubuntu server was running a browser-based chat interface and a separate video-generation app. An AWS EC2 instance gave both services a public HTTPS address, while the model workloads stayed at home.
 
+![A browser reaches Caddy over HTTPS. Caddy routes chat and video requests over WireGuard to Open WebUI and ComfyUI on the Ubuntu server. Open WebUI sends chat requests to Ollama, which runs Qwen.](/images/posts/ai-server-architecture.svg)
+
 ## Qwen, Ollama, and Open WebUI
 
 Ollama runs the Qwen model. Open WebUI gives me a chat interface in the browser and sends requests to Ollama. Having those pieces separate was helpful for troubleshooting. I could check whether the model responded locally before looking at the web interface or the public connection.
@@ -29,5 +31,7 @@ One useful test was requesting ComfyUI's `/system_stats` endpoint from EC2 over 
 ## What I'd repeat
 
 I'd bring up each app locally, test it over WireGuard from EC2, and then test the public hostname. Each step narrows down where to look when something fails. A browser error at the public address can come from the proxy or TLS even when the model and the app are both running fine.
+
+![Test each app locally first, then from EC2 over WireGuard, and finally in a browser using its public HTTPS URL.](/images/posts/ai-server-testing.svg)
 
 I reused that same network path when I added this Hugo blog. The [next post](/posts/hugo-behind-aws-ec2-and-wireguard/) walks through how I brought up the new domain and debugged its first HTTPS failure.
