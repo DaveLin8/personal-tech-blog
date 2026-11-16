@@ -10,7 +10,7 @@ I started with a simple goal: get Qwen running on my own machine so I could try 
 
 ## The Ubuntu server
 
-I run the AI workloads on `dave-bigdell`, my Dell XPS 8950 home server. It runs Ollama for Qwen, Open WebUI for chat, and ComfyUI for Wan 2.2 video experiments. The AWS instance handles public HTTPS through Caddy. Model inference runs on the Dell.
+I run the AI workloads on `domo`, my Dell XPS 8950 home server. It runs Ollama for Qwen, Open WebUI for chat, and ComfyUI for Wan 2.2 video experiments. The AWS instance handles public HTTPS through Caddy. Model inference runs on the Dell.
 
 ![Front view of a Dell XPS 8950 desktop tower](/images/posts/dell-xps-8950.png)
 
