@@ -35,5 +35,25 @@ pipeline {
                 '''
             }
         }
+	stage('Deploy Hugo Site') {
+	    steps {
+		sh '''
+		    set -eu
+
+		    echo "Preparing Hugo deployment..."
+
+		    test -f public/index.html
+		    test -d /var/jenkins_deploy/site
+
+		    echo "Synchronizing website files..."
+
+		    rsync -av --delete \
+			public/ \
+			/var/jenkins_deploy/site/
+
+		    echo "Hugo website deployed successfully."
+		'''
+	    }
+	}
     }
 }
