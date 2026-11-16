@@ -22,3 +22,5 @@ Some of my current projects include:
 I'll share tutorials, configuration examples, troubleshooting notes, and lessons learned along the way.
 
 Thanks for visiting!
+
+This blog is automatically built and deployed using Jenkins, Hugo, and Docker.
